@@ -3,50 +3,53 @@ class Order < ActiveRecord::Base
   has_many :shipments
   has_many :products, through: :line_items
 
-
   def add_product(product, quantity=1)
     if line_item = line_items.find_by(product_id: product.id)
       line_item.increment(quantity)
     else
-      LineItem.create(product: product)
+      line_items.create(product: product, quantity: quantity)
     end
   end
 
   def process
-    # create one shipment
-    # find which warehouse can fulfill the first line item
-    # assign warehouse to shipment
-    # check that warehouse for other line items in shipment
-    # if other line items in order -> repeat
-    # if no inventory in any warehouse, raise exception
     unadded_items = assign_line_items(Shipment.create(order: self), line_items) 
-    while unadded_items > 0
+
+    while unadded_items.count > 0
       unadded_items = assign_line_items(Shipment.create(order: self), unadded_items)
     end
-
-
   end
+
+  private
 
   def assign_line_items(shipment, items) 
     remainder = []
 
     items.each do |line_item|
       if shipment.warehouse.nil?
-        if warehouse = Warehouse.find_product(line_item.product, line_item.quantity)
-          shipment.warehouse = warehouse
-          shipment.add(line_item.product)
-        else
-          raise Exception.new("This product is not in stock")
-        end
+        find_warehouse(shipment, line_item)
       else
-        if shipment.warehouse.has?(line_item.product, line_item.quantity)
-          shipment.add(line_item.product)
-        else
-          remainder << line_item
-        end
+        remainder << line_item unless add_to_shipment(shipment, line_item)
       end
     end
-
     remainder
+  end
+
+  def find_warehouse(shipment, line_item)
+    if warehouse = Inventory.locate(line_item.product, line_item.quantity)
+      shipment.update(warehouse_id:  warehouse.id)
+      shipment.add(line_item.product)
+      warehouse
+    else
+      raise Exception.new("This product is not in stock")
+    end
+  end
+
+  def add_to_shipment(shipment, line_item)
+    if shipment.warehouse.has?(line_item.product, line_item.quantity)
+      shipment.add(line_item.product)
+      true
+    else
+      false
+    end
   end
 end

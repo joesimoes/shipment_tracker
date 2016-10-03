@@ -1,4 +1,4 @@
 class ProductShipment < ActiveRecord::Base
-  belongs_to :products
-  belongs_to :shipments
+  belongs_to :product
+  belongs_to :shipment
 end
