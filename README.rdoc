@@ -1,18 +1,21 @@
+## Setup
+* Setup will require a `bundle install` followed by a `rake db:setup`. The tests can be run with `rspec`.
+
 ## Models
 
-* Products, Shipments, Warehouses and Orders are the primary data models
-* A shipment represents a group of products sent from a warehouse
-* A warehouse contains inventory, which represents products with a quantity
-* An order interacts with products and gives a more comprehensive view of warehouses, inventory and shipments
-* Products are represented on an order as line items, which also have a quantity
+* Products, Shipments, Warehouses and Orders are the primary data models.
+* A shipment represents a group of products sent from a warehouse.
+* A warehouse contains inventory, which represents products with a quantity.
+* An order interacts with products and gives a more comprehensive view of warehouses, inventory and shipments.
+* Products are represented on an order as line items, which also have a quantity.
 
 ## Function
 
-* The majority of the processing algorithm and shipment parsing occurs in `Order#process`
+* The majority of the processing algorithm and shipment parsing occurs in `Order#process`.
 * This method recursively creates shipments based on the order's line items.
-* Each shipment has an associated warehouse which is determined by finding a warehouse with sufficient inventory of the given product
-* Currently, the algorithm is not optimized for picking the best case warehouse but follows a FIFO pattern. It could be further optimized to pick the best warehouse to fulfill the entire order, rather than finding the first warehouse to fulfill a line item quantity 
-* Developed a basic DSL for Line Item management to make the tests more readable and provide a basic interface
+* Each shipment has an associated warehouse which is determined by finding a warehouse with sufficient inventory of the given product.
+* Currently, the algorithm is not optimized for picking the best case warehouse but follows a FIFO pattern. It could be further optimized to pick the best warehouse to fulfill the entire order, rather than finding the first warehouse to fulfill a line item quantity.
+* Developed a basic DSL for Line Item management to make the tests more readable and provide a basic interface.
  
 ## Scenarios
 
