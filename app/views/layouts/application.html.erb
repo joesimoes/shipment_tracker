@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Casper</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+  <title>Shipment Tracker</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top navbar-inverse"><
+      <ul class="navbar-nav nav">
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/issues/new" New issue></a>
+        </li>
+    </nav>
+
+    <%= yield %>
 </head>
 <body>
-
-<%= yield %>
 
 </body>
 </html>
