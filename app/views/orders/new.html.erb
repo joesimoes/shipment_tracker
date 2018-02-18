@@ -1,22 +1,24 @@
-<div class="well">
-  <h1 class="header">New Order</h1>
-  <%= form_for @order do |f| %>
-    <div class="product">
-      <div>
-        <%= f.label :product %>
-        <%= f.collection_select :product_ids, Product.all, :id, :name %>
+<div class="large-12 columns">
+  <div class="well">
+    <h3 class="header">New Order</h1>
+    <%= form_for @order do |f| %>
+      <div class="product">
+        <div>
+          <%= f.label :product %>
+          <%= f.collection_select :product_ids, Product.all, :id, :name %>
+        </div>
+        <br>
+        <div class="dropdown">
+          <%= f.label :line_items %>
+          <%= f.select :line_items, options_for_select(1..10) %>
+        </div>
       </div>
       <br>
-      <div class="dropdown">
-        <%= f.label :line_items %>
-        <%= f.select :line_items, options_for_select(1..20) %>
-      </div>
-    </div>
-    <br>
-    <button id="add-button">Add another product</button>
-    <br>
-    <%= f.submit %>
-  <% end %>
+      <button id="add-button">Add another product</button>
+      <br>
+      <%= f.submit "Submit", class: "button" %>
+    <% end %>
+  </div>
 </div>
 
 <script>

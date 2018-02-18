@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
     @order.add_product(@product, params[:order][:line_items].to_i)
     @order.process
 
-    redirect_to action: "index"
+    redirect_to action: "index", flash: {notice: "Order created."}
   end
 
   def allowed_params

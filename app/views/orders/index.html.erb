@@ -1,38 +1,42 @@
-<h1>Processed Orders</h1>
 
-<% @processed_orders.each do |p| %>
-  <table class="table">
-    <tr>
-      <th>Order ID</th>
-      <th>Number of Shipments</th>
-    </tr>
-    <tr>
-      <td><%= p.id %></td>
-      <td><%= p.shipments.count %></td>
-    </tr>
-  </table>
-<% end %>
+<div class="large-12 columns">
+  <h3>Processed Orders</h3>
 
-<% if @processed_orders.empty? %>
-  None
-<% end %>
-
-<h1>Unprocessed Orders</h1>
-  <% @unprocessed_orders.each do |u| %>
+  <% @processed_orders.each do |p| %>
     <table class="table">
       <tr>
         <th>Order ID</th>
         <th>Number of Shipments</th>
       </tr>
       <tr>
-        <td><%= u.id %></td>
-        <td><%= u.shipments.count %></td>
+        <td><%= p.id %></td>
+        <td><%= p.shipments.count %></td>
       </tr>
     </table>
   <% end %>
 
-<% if @unprocessed_orders.empty? %>
-  None
-<% end %>
+  <% if @processed_orders.empty? %>
+    None
+  <% end %>
 
-<%= link_to "New Order", new_order_path %>
+  <h3>Unprocessed Orders</h3>
+    <% @unprocessed_orders.each do |u| %>
+      <table class="table">
+        <tr>
+          <th>Order ID</th>
+          <th>Number of Shipments</th>
+        </tr>
+        <tr>
+          <td><%= u.id %></td>
+          <td><%= u.shipments.count %></td>
+        </tr>
+      </table>
+    <% end %>
+
+  <% if @unprocessed_orders.empty? %>
+    None
+  <% end %>
+  <div style="margin-top: 1rem;">
+    <%= link_to "New Order", new_order_path, class: "button" %>
+  </div>
+</div>
