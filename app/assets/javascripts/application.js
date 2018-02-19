@@ -13,10 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require turbolinks
 //= require_tree .
 
-$(function(){
+$(document).ready(function(){
   $(document).foundation();
 
   $("#add-button").on('click', function(e) {
@@ -26,9 +25,7 @@ $(function(){
   });
 
 
-  $("tr[data-link]").on('click', function() {
+  $(".order-link[data-link]").on('click', function() {
     window.location = $(this).data("link")
   });
-
-
 });

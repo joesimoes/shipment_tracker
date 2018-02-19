@@ -1,7 +1,6 @@
 Order Number: <%= @order.id %>
 
 <h3>Shipments</h3>
-<% @order.shipments.each do |shipment| %>
 <table>
   <tr>
     <th>Warehouse Number</th>
@@ -9,6 +8,7 @@ Order Number: <%= @order.id %>
     <th>Shipment Destination</th>
     <th>Products</th>
   </tr>
+<% @order.shipments.each do |shipment| %>
   <tr>
     <td><%= shipment.warehouse_id %></td>
     <td><%= shipment.warehouse.address %></td>
@@ -20,5 +20,6 @@ Order Number: <%= @order.id %>
       <% end %>
     </td>
   </tr>
+  <% end %>
+
 </table>
-<% end %>

@@ -1,16 +1,16 @@
 <div class="large-12 columns">
   <div class="well">
     <h3 class="header">New Order</h1>
-    <%= form_for @order do |f| %>
+    <%= form_for "order[]", url: orders_path do |f| %>
       <div class="product">
         <div>
           <%= f.label :product %>
-          <%= f.collection_select :product_ids, Product.all, :id, :name %>
+          <%= f.collection_select :product_ids, Product.all, :id, :name, multiple: true %>
         </div>
         <br>
         <div class="dropdown">
           <%= f.label :line_items %>
-          <%= f.select :line_items, options_for_select(1..10) %>
+          <%= f.select :line_items, options_for_select(1..10), multiple: true %>
         </div>
       </div>
       <br>

@@ -33,8 +33,12 @@ h3 {
   margin-top: 1rem;
 }
 
-tr {
+tr.order-link {
   cursor: pointer;
+}
+
+tr.order-link:hover {
+  background-color: lightgray;
 }
 
 td {

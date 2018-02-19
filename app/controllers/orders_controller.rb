@@ -10,8 +10,10 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.create
-    @product = Product.find(params[:order][:product_ids].to_i)
-    @order.add_product(@product, params[:order][:line_items].to_i)
+    params[:order].each do |order|
+      product = Product.find(order[:product_ids].to_i)
+      @order.add_product(product, order[:line_items].to_i)
+    end
     @order.process
 
     redirect_to action: "index", flash: {notice: "Order created."}
@@ -22,6 +24,6 @@ class OrdersController < ApplicationController
   end
 
   def allowed_params
-    params.require(:order).permit(line_item_ids: [])
+    params.require(:order).permit(product_ids: [], line_items: [])
   end
 end
