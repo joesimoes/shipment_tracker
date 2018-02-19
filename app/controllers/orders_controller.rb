@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   def index
-    @unprocessed_orders = Order.includes(:shipments).where(shipments: {order_id: nil})
-    @processed_orders = Order.joins(:shipments).group('orders.id').having('count(order_id) > 0')
+    @unprocessed_orders = Order.includes(:shipments).where(shipments: {order_id: nil}).prioritized
+    @processed_orders = Order.joins(:shipments).group('orders.id').having('count(order_id) > 0').prioritized
   end
 
   def new
@@ -17,8 +17,11 @@ class OrdersController < ApplicationController
     redirect_to action: "index", flash: {notice: "Order created."}
   end
 
-  def allowed_params
-    params.require(:order).permit(:email, :password, :password_confirmation, event_ids: [])
+  def show
+    @order = Order.find(params[:id])
   end
 
+  def allowed_params
+    params.require(:order).permit(line_item_ids: [])
+  end
 end

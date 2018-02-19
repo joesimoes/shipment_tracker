@@ -12,16 +12,20 @@ class Order < ActiveRecord::Base
   end
 
   def process
-    unadded_items = assign_line_items(Shipment.create(order: self), line_items) 
+    unadded_items = assign_line_items(Shipment.create(order: self), line_items)
 
     while unadded_items.count > 0
       unadded_items = assign_line_items(Shipment.create(order: self), unadded_items)
     end
   end
 
+  def self.prioritized
+    order('orders.created_at')
+  end
+
   private
 
-  def assign_line_items(shipment, items) 
+  def assign_line_items(shipment, items)
     remainder = []
 
     items.each do |line_item|

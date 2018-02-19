@@ -15,3 +15,28 @@
  *= require foundation_and_overrides
 
  */
+
+.top-bar {
+  background-color: #001a00;
+}
+
+.top-bar li {
+  background-color: #001a00;
+  color: white;
+}
+
+.top-bar a {
+  color: white;
+}
+
+h3 {
+  margin-top: 1rem;
+}
+
+tr {
+  cursor: pointer;
+}
+
+td {
+  text-align: center;
+}

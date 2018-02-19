@@ -14,19 +14,9 @@
         </div>
       </div>
       <br>
-      <button id="add-button">Add another product</button>
       <br>
       <%= f.submit "Submit", class: "button" %>
     <% end %>
+    <button class="button secondary radius" id="add-button">Add another product</button>
   </div>
 </div>
-
-<script>
-  $(document).ready(function() {
-    $("#add-button").click(function(e) {
-      e.preventDefault();
-      var newProduct = $(".product").last().clone();
-      $("div.product").last().append(newProduct);
-    });
-  });
-</script>

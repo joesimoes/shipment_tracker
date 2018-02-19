@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #
 
-    product = Product.create
-    warehouse = Warehouse.create
+    product = Product.create(name: "4K Television")
+    warehouse = Warehouse.create(address: "100 Broadway New York, NY 10010")
     inventory = Inventory.create(product_id: product.id, warehouse_id: warehouse.id, quantity: 10)
     order = Order.create

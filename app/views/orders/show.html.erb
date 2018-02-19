@@ -1,0 +1,24 @@
+Order Number: <%= @order.id %>
+
+<h3>Shipments</h3>
+<% @order.shipments.each do |shipment| %>
+<table>
+  <tr>
+    <th>Warehouse Number</th>
+    <th>Warehouse Location</th>
+    <th>Shipment Destination</th>
+    <th>Products</th>
+  </tr>
+  <tr>
+    <td><%= shipment.warehouse_id %></td>
+    <td><%= shipment.warehouse.address %></td>
+    <td><%= shipment.destination %></td>
+    <td><% shipment.products.each do |product| %>
+      <ul>
+        <li><%= product.name %></li>
+      </ul>
+      <% end %>
+    </td>
+  </tr>
+</table>
+<% end %>

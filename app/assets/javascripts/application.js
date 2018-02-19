@@ -16,4 +16,19 @@
 //= require turbolinks
 //= require_tree .
 
-$(function(){ $(document).foundation(); });
+$(function(){
+  $(document).foundation();
+
+  $("#add-button").on('click', function(e) {
+    e.preventDefault();
+    var newProduct = $(".product").last().clone();
+    $("div.product").last().append(newProduct);
+  });
+
+
+  $("tr[data-link]").on('click', function() {
+    window.location = $(this).data("link")
+  });
+
+
+});
