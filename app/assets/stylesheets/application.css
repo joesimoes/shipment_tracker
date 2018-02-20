@@ -16,6 +16,12 @@
 
  */
 
+.product {
+  background-color: #e6e6e6;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
 .top-bar {
   background-color: #001a00;
 }

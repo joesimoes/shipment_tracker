@@ -1,25 +1,29 @@
-Order Number: <%= @order.id %>
+<div class="large-12 columns">
+  <br>
+  <div>
+    Order ID: <%= @order.id %>
+  </div>
+  <h3>Shipments</h3>
+  <table>
+    <tr>
+      <th>Warehouse Number</th>
+      <th>Warehouse Location</th>
+      <th>Shipment Destination</th>
+      <th>Products</th>
+    </tr>
+  <% @order.shipments.each do |shipment| %>
+    <tr>
+      <td><%= shipment.warehouse_id %></td>
+      <td><%= shipment.warehouse.address %></td>
+      <td><%= @order.destination %></td>
+      <td><% shipment.products.each do |product| %>
+        <ul>
+          <li><%= product.name %></li>
+        </ul>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
 
-<h3>Shipments</h3>
-<table>
-  <tr>
-    <th>Warehouse Number</th>
-    <th>Warehouse Location</th>
-    <th>Shipment Destination</th>
-    <th>Products</th>
-  </tr>
-<% @order.shipments.each do |shipment| %>
-  <tr>
-    <td><%= shipment.warehouse_id %></td>
-    <td><%= shipment.warehouse.address %></td>
-    <td><%= @order.destination %></td>
-    <td><% shipment.products.each do |product| %>
-      <ul>
-        <li><%= product.name %></li>
-      </ul>
-      <% end %>
-    </td>
-  </tr>
-  <% end %>
-
-</table>
+  </table>
+</div>
