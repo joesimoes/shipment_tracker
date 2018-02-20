@@ -1,5 +1,5 @@
 ## Setup
-* Setup will require a `bundle install` followed by a `rake db:setup`. The tests can be run with `rspec`.
+* Setup will require a `bundle install` followed by a `rake db:setup` and `rake db:seed`. The tests can be run with `rspec`.
 
 ## Models
 
@@ -16,7 +16,7 @@
 * Each shipment has an associated warehouse which is determined by finding a warehouse with sufficient inventory of the given product.
 * Currently, the algorithm is not optimized for picking the best case warehouse but follows a FIFO pattern. It could be further optimized to pick the best warehouse to fulfill the entire order, rather than finding the first warehouse to fulfill a line item quantity.
 * Developed a basic DSL for Line Item management to make the tests more readable and provide a basic interface.
- 
+
 ## Scenarios
 
 The primary cases I was developing for:
