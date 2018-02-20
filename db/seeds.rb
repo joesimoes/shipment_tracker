@@ -19,4 +19,4 @@
     inventory_three = Inventory.create(product_id: product_three.id, warehouse_id: warehouse_one.id, quantity: 10)
 
 
-    order = Order.create
+    order = Order.create(destination: "100 Broadway, New York, NY 10010")

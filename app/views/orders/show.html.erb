@@ -12,7 +12,7 @@ Order Number: <%= @order.id %>
   <tr>
     <td><%= shipment.warehouse_id %></td>
     <td><%= shipment.warehouse.address %></td>
-    <td><%= shipment.destination %></td>
+    <td><%= @order.destination %></td>
     <td><% shipment.products.each do |product| %>
       <ul>
         <li><%= product.name %></li>

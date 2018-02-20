@@ -2,21 +2,27 @@
   <div class="well">
     <h3 class="header">New Order</h1>
     <%= form_for "order[]", url: orders_path do |f| %>
-      <div class="product">
-        <div>
-          <%= f.label :product %>
-          <%= f.collection_select :product_ids, Product.all, :id, :name, multiple: true %>
+      <div class="item">
+        <div class="product">
+          <div>
+            <%= f.label :product %>
+            <%= f.collection_select :product_ids, Product.all, :id, :name, multiple: true %>
+          </div>
+          <br>
+          <div class="line_items">
+            <%= f.label :line_items %>
+            <%= f.select :line_items, options_for_select(1..10), multiple: true %>
+          </div>
         </div>
-        <br>
-        <div class="dropdown">
-          <%= f.label :line_items %>
-          <%= f.select :line_items, options_for_select(1..10), multiple: true %>
-        </div>
+      </div>
+      <div class="destination">
+        <%= f.label :destination %>
+        <%= f.text_field :destination %>
       </div>
       <br>
       <br>
       <%= f.submit "Submit", class: "button" %>
     <% end %>
-    <button class="button secondary radius" id="add-button">Add another product</button>
+    <button class="button secondary" id="add-button">Add another product</button>
   </div>
 </div>

@@ -18,19 +18,7 @@
     None
   <% end %>
 
-  <h3>Unprocessed Orders</h3>
-  <table class="table">
-    <tr>
-      <th>Order ID</th>
-      <th>Number of Shipments</th>
-    </tr>
-    <% @unprocessed_orders.each do |unprocessed_order| %>
-        <tr class="order-link">
-          <td><%= unprocessed_order.id %></td>
-          <td><%= unprocessed_order.shipments.count %></td>
-        </tr>
-    <% end %>
-  </table>
+  <h3>Unprocessed Orders: <%= @unprocessed_orders.count %> </h3>
 
   <% if @unprocessed_orders.empty? %>
     None

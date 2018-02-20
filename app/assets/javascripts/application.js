@@ -20,8 +20,8 @@ $(document).ready(function(){
 
   $("#add-button").on('click', function(e) {
     e.preventDefault();
-    var newProduct = $(".product").last().clone();
-    $("div.product").last().append(newProduct);
+    var newProduct = $(".item").last().clone();
+    $("div.item").last().append(newProduct);
   });
 
 

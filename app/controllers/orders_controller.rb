@@ -15,6 +15,7 @@ class OrdersController < ApplicationController
       @order.add_product(product, order[:line_items].to_i)
     end
     @order.process
+    @order.update(destination: params[:order].last["destination"])
 
     redirect_to action: "index", flash: {notice: "Order created."}
   end
@@ -23,7 +24,9 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
-  def allowed_params
-    params.require(:order).permit(product_ids: [], line_items: [])
+  private
+
+  def order_params
+    params.require(:order).permit(:destination, product_ids: [], line_items: [])
   end
 end
